@@ -44,7 +44,8 @@ class BarcodeScannerActivity : Activity(), ZXingScannerView.ResultHandler {
                     TOGGLE_FLASH, 0, "Flash On")
             item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
         }
-        val item2 = menu.add(1,CANCEL,"Cancel")
+       val item2 =  menu.add(1, CANCEL, 1, "Cancel")
+//        val item2 = menu.add(1,CANCEL,"Cancel")
         item2.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
         return super.onCreateOptionsMenu(menu)
     }
@@ -54,6 +55,10 @@ class BarcodeScannerActivity : Activity(), ZXingScannerView.ResultHandler {
             scannerView.flash = !scannerView.flash
             this.invalidateOptionsMenu()
             return true
+        }
+        if(item.itemId == CANCEL){
+            finishWithError("USER CANCELLED")
+            // Nothing here.
         }
         return super.onOptionsItemSelected(item)
     }
